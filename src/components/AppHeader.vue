@@ -9,7 +9,7 @@
                     <router-link class="nav-link" to="/marvel-heroes">Marvel Heroes</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link 2</a>
+                    <router-link class="nav-link" to="/calendar">Calendar</router-link>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link 3</a>
