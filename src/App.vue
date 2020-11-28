@@ -1,26 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1 v-text="title"></h1>
+  <p>Count: {{ charCount }}</p>
+  <ul>
+    <li v-for="(ch, index) in characters" v-bind:key="ch.id">
+      {{ index+1 }}. {{ ch.name }} <button @click="removeCharacter(index)">X</button>
+    </li>
+  </ul>
+
+  <form @submit.prevent>
+    <input type="text" v-model="newCharacter">
+    <button @click="addCharacter">Add</button>
+  </form>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  export default {
+    computed: {
+      charCount: function() {
+        return this.characters.length;
+      }
+    },
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    methods: {
+      addCharacter: function() {
+        this.characters.unshift({name: this.newCharacter});
+        this.newCharacter = "";
+      },
+
+      removeCharacter: function(index) {
+        this.characters.splice(index, 1);
+      }
+    },
+
+    data: function() {
+      return {
+        title: "Marvel Characters",
+        characters: [
+          {id: 1, name: "Spider Man"},
+          {id: 2, name: "Iron Man"},
+          {id: 3, name: "Doctor Strange"},
+          {id: 4, name: "War Machine"},
+          {id: 5, name: "Gamora"}
+        ],
+        newCharacter: ""
+      }
+    }
+  };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
