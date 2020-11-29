@@ -3,7 +3,7 @@
     <p>Count: {{ charCount }}</p>
     <ul>
         <li v-for="(ch, index) in characters" v-bind:key="ch.id">
-            {{ index+1 }}. {{ ch.name }} <button class="btn btn-danger btn-sm" @click="removeCharacter(index)">delete</button>
+            {{ index+1 }}. {{ ch.name }} <button class="btn btn-danger btn-sm" @click="characters.splice(index, 1)">delete</button>
         </li>
     </ul>
     <form @submit.prevent>
@@ -22,12 +22,10 @@ export default {
 
     methods: {
         addCharacter: function() {
-            this.characters.unshift({ name: this.newCharacter });
-            this.newCharacter = "";
-        },
-
-        removeCharacter: function(index) {
-            this.characters.splice(index, 1);
+            if (this.newCharacter !== "") {
+                this.characters.unshift({ name: this.newCharacter });
+                this.newCharacter = "";
+            }
         }
     },
 
