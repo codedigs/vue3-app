@@ -18,6 +18,7 @@ export default {
                 {to: "/marvel-heroes", name:"Marvel Heroes"},
                 {to: "/calendar", name:"Calendar"},
                 {to: "/markdown", name:"Markdown"},
+                {to: "/slider-carousel", name:"Slider Carousel"},
             ]
         }
     },
