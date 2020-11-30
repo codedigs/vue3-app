@@ -5,6 +5,8 @@
         <div class="row">
             <div class="col-md-12">
                 <router-view></router-view>
+
+                <LoginModal />
             </div>
         </div>
     </div>
@@ -12,8 +14,12 @@
 
 <script>
 import AppHeader from "./components/AppHeader";
+import LoginModal from "./components/LoginModal";
 
 export default {
-    components: { AppHeader }
+    components: { AppHeader, LoginModal },
+    methods: {
+
+    }
 };
 </script>

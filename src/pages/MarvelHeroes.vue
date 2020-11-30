@@ -6,9 +6,9 @@
             {{ index+1 }}. {{ ch.name }} <button class="btn btn-danger btn-sm" @click="characters.splice(index, 1)">delete</button>
         </li>
     </ul>
-    <form @submit.prevent>
+    <form @submit.prevent="addCharacter">
         <input type="text" v-model="newCharacter">
-        <button class="btn btn-primary btn-sm" @click="addCharacter">Add</button>
+        <button type="submit" class="btn btn-secondary btn-sm">Add</button>
     </form>
 </template>
 
