@@ -33,9 +33,8 @@ export default {
 
     methods: {
         onType: function(e) {
-            var _this = this;
-            this.debounce(function() {
-                _this.text = e.target.value;
+            this.debounce(() => {
+                this.text = e.target.value;
             });
         }
     }

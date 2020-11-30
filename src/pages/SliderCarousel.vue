@@ -34,10 +34,8 @@ export default {
     },
 
     startSlider: function() {
-        var _this = this;
-
-        this.sliderChanger = setInterval(function() {
-            _this.currentActive = _this.currentActive === 2 ? 0 : _this.currentActive + 1;
+        this.sliderChanger = setInterval(() => {
+            this.currentActive = this.currentActive === 2 ? 0 : this.currentActive + 1;
         }, 1500);
     },
 
