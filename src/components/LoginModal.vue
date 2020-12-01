@@ -12,6 +12,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" role="alert" v-show="errorMessage !== ''" v-text="errorMessage"></div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-secondary btn-xs" @click="signInWithGoogle">Sign in with Google</button>
+                    </div>
+                    <div class="form-group text-center mb-0">
+                        <span>Or</span>
+                    </div>
                     <form @submit.prevent class="form-horizontal" ref="loginForm">
                         <div class="form-group">
                             <label>Email</label>
@@ -32,7 +38,6 @@
             </div>
         </div>
     </div>
-
     <!-- inside of AppHeader component -->
     <teleport to=".navbar-nav">
         <li class="nav-item" v-if="!isAuthenticated">
@@ -43,7 +48,6 @@
         </li>
     </teleport>
 </template>
-
 <script>
 import firebase from "../utilities/firebase/firebase";
 import firebase_const from "../utilities/firebase/constant";
@@ -52,7 +56,7 @@ import jQ from "jquery";
 export default {
     mounted: function() {
         firebase.auth().onAuthStateChanged((user) => {
-          this.isAuthenticated = user !== null;
+            this.isAuthenticated = user !== null;
         });
     },
 
@@ -104,10 +108,24 @@ export default {
 
         signout: function() {
             firebase.auth().signOut().then(() => {
-              console.log("signout success")
-            }).catch((err) => {
+                console.log("signout success")
+            }).catch((error) => {
                 console.log("signout error")
-                console.log(err);
+                console.log(error);
+            });
+        },
+
+        signInWithGoogle: function() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+
+            firebase.auth().signInWithPopup(provider).then(() => {
+                this.errorMessage = "";
+                this.isAuthenticated = true;
+
+                this.closeModal();
+            }).catch((error) => {
+                this.errorMessage = error.message;
+                this.isAuthenticated = false;
             });
         }
     }
