@@ -81,8 +81,10 @@ export default {
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                 .then(() => {
                     this.isLoading = false;
+
                     this.email = "";
                     this.password = "";
+                    this.errorMessage = "";
                     this.isAuthenticated = true;
 
                     this.closeModal();
