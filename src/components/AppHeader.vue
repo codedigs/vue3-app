@@ -5,9 +5,6 @@
                 <li class="nav-item" v-for="link in links" :key="link.to" :class="activeClass(link.to)">
                     <router-link class="nav-link" :to="link.to" v-text="link.name"></router-link>
                 </li>
-                <li class="nav-item">
-                    <a href="#signin-modal" class="nav-link" data-toggle="modal">Login</a>
-                </li>
             </ul>
         </div>
     </nav>
